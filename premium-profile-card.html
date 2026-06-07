@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My links</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at top left, #ffffff18 0%, transparent 35%),
+        radial-gradient(circle at bottom right, #55555533 0%, transparent 40%),
+        #0a0a0a;
+    }
+
+    .card {
+      width: min(1200px, 100%);
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(8, 12, 24, .72);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      box-shadow: 0 0 100px rgba(255,255,255,.06), 0 30px 80px rgba(0,0,0,.7);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: .8s ease;
+    }
+
+    body.loaded .card { opacity: 1; transform: translateY(0); }
+
+    .banner {
+      height: 340px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile {
+      display: flex;
+      align-items: flex-end;
+      gap: 35px;
+      padding: 0 70px 40px;
+      margin-top: -110px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .avatar {
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid rgba(255,255,255,.12);
+      background: #111827;
+      box-shadow: 0 10px 40px rgba(0,0,0,.6);
+      flex-shrink: 0;
+    }
+
+    .info h1 { color: white; font-size: 4rem; font-weight: 800; }
+    .info p { margin-top: 10px; color: #d1d5db; font-size: 1.2rem; }
+
+    .music-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      padding: 6px 14px 6px 8px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      cursor: pointer;
+      transition: background .2s ease;
+    }
+
+    .music-pill:hover { background: rgba(255,255,255,.12); }
+
+    .pill-play {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .pill-play svg { width: 10px; height: 10px; }
+
+    .pill-text { font-size: .82rem; color: #d1d5db; white-space: nowrap; }
+    .pill-text strong { color: white; font-weight: 600; }
+
+    .divider { height: 1px; background: rgba(255,255,255,.08); margin: 0 50px; }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
+      gap: 22px;
+      padding: 32px 30px;
+    }
+
+    .social {
+      text-decoration: none;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: .35s ease;
+    }
+
+    .icon svg { width: 24px; height: 24px; display: block; }
+
+    .social:hover .icon { transform: translateY(-6px) scale(1.12); }
+
+    .tiktok  { background: #000; box-shadow: 0 0 20px rgba(255,255,255,.15); }
+    .telegram { background: #229ED9; box-shadow: 0 0 20px rgba(34,158,217,.5); }
+    .discord  { background: #5865F2; box-shadow: 0 0 20px rgba(88,101,242,.5); }
+
+    .social::before {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: -40px;
+      background: #111827;
+      color: white;
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: .85rem;
+      opacity: 0;
+      transition: .3s;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .social:hover::before { opacity: 1; }
+
+    .footer {
+      text-align: center;
+      padding: 25px;
+      color: #aab0bc;
+      border-top: 1px solid rgba(255,255,255,.05);
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 900px) {
+      .profile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: -90px;
+        padding: 0 25px 35px;
+      }
+      .avatar { width: 180px; height: 180px; }
+      .info h1 { font-size: 2.8rem; }
+      .banner { height: 250px; }
+      .socials { gap: 25px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+
+  <div class="banner">
+    <img id="bannerImg" src="bg.png">
+  </div>
+
+  <div class="profile">
+    <img class="avatar" src="pfp.png">
+
+    <div class="info">
+      <h1>Jerbe</h1>
+      <p>Dreamer. Creator. Explorer of worlds and ideas.</p>
+      <div class="music-pill" id="musicPill">
+        <div class="pill-play" id="pillPlay">
+          <svg id="pillIcon" viewBox="0 0 24 24" fill="black"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+        <span class="pill-text"><strong>When the Sun Hits</strong> · Slowdive</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <audio id="audioPlayer" src="song.mp3"></audio>
+
+  <div class="socials">
+
+    <a class="social" data-platform="tiktok" data-tooltip="TikTok">
+      <div class="icon tiktok">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+      </div>
+    </a>
+
+    <a class="social" data-platform="telegram" data-tooltip="Telegram">
+      <div class="icon telegram">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      </div>
+    </a>
+
+    <a class="social" data-platform="discord" data-tooltip="Discord">
+      <div class="icon discord">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="footer">♥ Thanks for stopping by!</div>
+
+</div>
+
+<script>
+  const profileLinks = {
+    tiktok:   "https://www.tiktok.com/@ix.j3rbe",
+    telegram: "https://t.me/hambibutdiff",
+    discord:  "https://discord.com/users/916252877784252427"
+  };
+
+  document.querySelectorAll(".social").forEach(btn => {
+    const platform = btn.dataset.platform;
+    if (profileLinks[platform]) {
+      btn.href = profileLinks[platform];
+      btn.target = "_blank";
+      btn.rel = "noopener noreferrer";
+    }
+  });
+
+  window.addEventListener("load", () => {
+    document.body.classList.add("loaded");
+  });
+
+  const audio = document.getElementById("audioPlayer");
+  const pill = document.getElementById("musicPill");
+  const pillPlay = document.getElementById("pillPlay");
+  const pillIcon = document.getElementById("pillIcon");
+
+  const playPath = "M5,3 19,12 5,21";
+  const pausePath = "M6 19h4V5H6v14zm8-14v14h4V5h-4z";
+
+  pill.addEventListener("click", () => {
+    if (audio.paused) {
+      audio.play();
+      pillIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="black"/>';
+    } else {
+      audio.pause();
+      pillIcon.innerHTML = '<polygon points="5,3 19,12 5,21" fill="black"/>';
+    }
+  });
+
+  audio.addEventListener("ended", () => {
+    pillIcon.innerHTML = '<polygon points="5,3 19,12 5,21" fill="black"/>';
+  });
+
+
+</script>
+
+</body>
+</html>
